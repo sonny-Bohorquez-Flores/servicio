@@ -1,0 +1,43 @@
+@startuml
+skinparam package {
+    BackgroundColor White
+    BorderColor Black
+}
+
+package "Capa de Presentación" {
+    rectangle "UI\n(Formularios e Interfaces)" as UI
+    rectangle "Roles de Usuarios" as Roles {
+        rectangle "Gerentes" as Gerentes
+        rectangle "Administradores" as Administradores
+        rectangle "Personal Operativo" as PersonalOperativo
+    }
+    UI - Roles
+}
+
+package "Capa de Lógica de Negocio" {
+    rectangle "Procesos de RRHH" as Procesos {
+        rectangle "Contratación de empleados" as Contratacion
+        rectangle "Gestión de permisos y licencias" as Permisos
+        rectangle "Evaluación de desempeño" as Evaluacion
+        rectangle "Generación de planillas" as Planillas
+    }
+    rectangle "Seguridad" as Seguridad
+    rectangle "Integración con Sistemas Externos" as Integracion
+    Procesos - Seguridad
+    Procesos - Integracion
+}
+
+package "Capa de Acceso a Datos" {
+    rectangle "Operaciones CRUD" as CRUD {
+        rectangle "Lectura" as Lectura
+        rectangle "Escritura" as Escritura
+        rectangle "Actualización" as Actualizacion
+        rectangle "Eliminación" as Eliminacion
+    }
+    rectangle "Manejo de Datos" as Manejo {
+        rectangle "Almacenamiento seguro" as Almacenamiento
+        rectangle "Persistencia de datos" as Persistencia
+    }
+    CRUD - Manejo
+}
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+skinparam linetype ortho
+
+package "Capa de Presentación" {
+  [Interfaz de Usuario (UI)]
+  [Roles de Usuarios]
+}
+
+package "Capa de Lógica de Negocio" {
+  [Gestión de RRHH]
+  [Seguridad]
+  [Integración con Sistemas Externos]
+}
+
+package "Capa de Acceso a Datos" {
+  [Operaciones CRUD]
+  [Manejo de Datos]
+}
+
+[Interfaz de Usuario (UI)] -down-> [Gestión de RRHH] : Interacción de Usuario
+[Roles de Usuarios] -down-> [Gestión de RRHH] : Interacción de Usuario
+[Gestión de RRHH] -down-> [Operaciones CRUD] : Manipulación de Datos
+[Gestión de RRHH] -down-> [Manejo de Datos] : Persistencia de Datos
+[Seguridad] -down-> [Manejo de Datos] : Encriptación
+[Integración con Sistemas Externos] -down-> [Manejo de Datos] : Interoperabilidad
+@enduml

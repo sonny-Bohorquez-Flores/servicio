@@ -1,0 +1,132 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title HR System Layers Diagram
+
+class PresentationLayer {
+    User Interface
+    Forms
+}
+
+class BusinessLayer {
+    HR Management Logic
+    Rules and Processes
+}
+
+class DataAccessLayer {
+    Data Persistence
+    Data Access Operations
+    Data Encryption
+}
+
+class DataLayer {
+    HR Data
+}
+
+class IntegrationLayer {
+    External System Connectivity
+}
+
+PresentationLayer <-> BusinessLayer
+BusinessLayer <-> DataAccessLayer
+DataAccessLayer <-> DataLayer
+IntegrationLayer <-> BusinessLayer
+
+@enduml
+
+@startuml
+
+package "Capa de Presentación" {
+  [Interfaz de Usuario (UI)]
+  [Roles de Usuarios]
+}
+
+package "Capa de Lógica de Negocio" {
+  [Gestión de RRHH]
+  [Seguridad]
+  [Integración con Sistemas Externos]
+}
+
+package "Capa de Acceso a Datos" {
+  [Operaciones CRUD]
+  [Manejo de Datos]
+}
+
+[Interfaz de Usuario (UI)] -down-> [Gestión de RRHH] : Interacción de Usuario
+[Roles de Usuarios] -down-> [Gestión de RRHH] : Interacción de Usuario
+[Gestión de RRHH] -down-> [Operaciones CRUD] : Manipulación de Datos
+[Gestión de RRHH] -down-> [Manejo de Datos] : Persistencia de Datos
+[Seguridad] -down-> [Manejo de Datos] : Encriptación
+[Integración con Sistemas Externos] -down-> [Manejo de Datos] : Interoperabilidad
+
+@enduml
+
+
+@startuml
+
+package "Capa de Presentación" {
+  [Interfaz de Usuario (UI)] as UI
+  [Roles de Usuarios] as Roles
+}
+
+package "Capa de Lógica de Negocio" {
+  [Gestión de RRHH] as RRHH
+  [Seguridad] as Seguridad
+  [Integración con Sistemas Externos] as Integracion
+}
+
+package "Capa de Acceso a Datos" {
+  [Operaciones CRUD] as CRUD
+  [Manejo de Datos] as Datos
+}
+
+UI -- RRHH : Formularios para ingresar información
+UI -- RRHH : Interfaces para enviar solicitudes
+Roles -- RRHH : Gestión de Roles
+
+RRHH -- CRUD : Operaciones de RRHH
+RRHH -- Datos : Manejo de Datos de RRHH
+Seguridad -- Datos : Encriptación de datos sensibles
+Integracion -- Datos : Interacción con entidades externas
+
+note bottom of UI
+  Formularios para ingresar información.
+  Interfaces para enviar solicitudes.
+end note
+
+note bottom of Roles
+  Gerentes
+  Administradores
+  Personal Operativo
+end note
+
+note bottom of RRHH
+  Definición de reglas y procesos.
+  Contratación de empleados.
+  Gestión de permisos y licencias.
+  Evaluación de desempeño.
+  Generación de planillas.
+end note
+
+note bottom of Seguridad
+  Encriptación de información sensible.
+end note
+
+note bottom of Integracion
+  Conectividad con la SUNAT u otras entidades.
+end note
+
+note bottom of CRUD
+  Lectura.
+  Escritura.
+  Actualización.
+  Eliminación.
+end note
+
+note bottom of Datos
+  Almacenamiento seguro de datos sensibles.
+  Persistencia de datos.
+end note
+
+@enduml
